@@ -31,6 +31,6 @@ if __name__ == "__main__":
     if EXPORT_SKILL_FILES:
         export_skill_files("D:/Obsidian/Strixhaven Campaign Planning/Skills/")
         import shutil
-        shutil.copyfile("data/Skills.csv", "skill-tree/public/Skills.csv")
+        shutil.copyfile("data/Skills.csv", "D:/Github/SkillRepository/Skills.csv")
     if VISUALIZE:
         visualize()
