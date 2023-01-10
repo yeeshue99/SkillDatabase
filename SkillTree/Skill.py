@@ -30,7 +30,7 @@ class Skill:
         return self
         
     def export(self) -> tuple[str]:
-        return (self.name, self.archetype, self.prerequisite, self.casting_time, self.range, self.duration, self.uses, self.has_active, self.has_passive, self.description)
+        return {"name":self.name, "archetype":self.archetype, "prerequisite":self.prerequisite, "casting_time":self.casting_time, "range":self.range, "duration":self.duration, "uses":self.uses, "has_active":self.has_active, "has_passive":self.has_passive, "description":self.description}
     
     def __repr__(self): 
         return self.name

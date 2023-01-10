@@ -1,2 +1,4 @@
 .code-workspace
 SkillDatabase.code-workspace
+settings.ini
+.env

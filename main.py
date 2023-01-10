@@ -1,9 +1,9 @@
 from SkillTree import *
-                                   
-UPDATE_DATABASES = True
-EXPORT_SKILL_FILES = True
-VISUALIZE = False
+import os
+import configparser               
 
+config = configparser.ConfigParser()
+config.read(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'config.ini'))
 
 def update_databases():
     db = DatabaseHandler()
@@ -26,11 +26,11 @@ def visualize():
     vm.show_tree()
     
 if __name__ == "__main__":
-    if UPDATE_DATABASES:
+    if config["DEFAULT"].getboolean("UPDATE_DATABASES"):
         update_databases()
-    if EXPORT_SKILL_FILES:
+    if config["DEFAULT"].getboolean("EXPORT_SKILL_FILES"):
         export_skill_files("D:/Obsidian/Strixhaven Campaign Planning/Skills/")
         import shutil
         shutil.copyfile("data/Skills.csv", "D:/Github/SkillRepository/Skills.csv")
-    if VISUALIZE:
+    if config["DEFAULT"].getboolean("VISUALIZE"):
         visualize()
