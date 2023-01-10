@@ -1,5 +1,4 @@
 import csv
-
 import sys
 
 parent_module = sys.modules[".".join(__name__.split(".")[:-1]) or "__main__"]

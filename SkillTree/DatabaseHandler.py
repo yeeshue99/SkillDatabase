@@ -1,7 +1,8 @@
-import sys
-import os
-from supabase import create_client, Client
 import configparser
+import os
+import sys
+
+from supabase import Client, create_client
 
 config = configparser.ConfigParser()
 config.read(os.path.join(os.path.dirname(os.path.dirname(__file__)), 'config.ini'))

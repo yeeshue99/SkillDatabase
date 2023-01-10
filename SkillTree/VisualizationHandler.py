@@ -1,15 +1,14 @@
 import sys
-import pandas as pd
 
-from PyQt5.QtWidgets import QApplication, QTreeWidget, QTreeWidgetItem, QMainWindow, QTextEdit, QHBoxLayout, QWidget
+import pandas as pd
+from PyQt5.QtWidgets import (QApplication, QHBoxLayout, QMainWindow, QTextEdit,
+                             QTreeWidget, QTreeWidgetItem, QWidget)
 
 parent_module = sys.modules[".".join(__name__.split(".")[:-1]) or "__main__"]
 if __name__ == "__main__" or parent_module.__name__ == "__main__":
     from DatabaseHandler import DatabaseHandler
-    from CSVHandler import CSVHandler
 else:
     from .DatabaseHandler import DatabaseHandler
-    from .CSVHandler import CSVHandler
     
 class VisualizationHandler:
     def __init__(self) -> None:
