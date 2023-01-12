@@ -54,3 +54,5 @@ docs/_build/
 SkillDatabase.code-workspace
 settings.ini
 .env
+
+Skills.csv
