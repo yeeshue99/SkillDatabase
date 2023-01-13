@@ -19,7 +19,7 @@ SUPABASE_URL = config["DATABASE"]["DATABASE_URL"]
 SUPABASE_KEY = config["DATABASE"]["DATABASE_API_KEY"]
 
 class DatabaseHandler:
-    def __init__(self, database:str = "skills.sqlite") -> None:
+    def __init__(self, database:str = "Skills") -> None:
         self.database = database
     
     def update_data(self) -> int:
@@ -28,7 +28,7 @@ class DatabaseHandler:
         supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
         
         try:
-            return_data = supabase.table("Skills").upsert(data).execute()
+            return_data = supabase.table(self.database).upsert(data).execute()
                 
             inserted = len(return_data.data)
         except:
@@ -41,7 +41,7 @@ class DatabaseHandler:
     def get_data(self, raw=False) -> list[Skill] or list[tuple]:
         supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
         
-        data = supabase.table("Skills").select("*").execute()
+        data = supabase.table(self.database).select("*").execute()
         
         skills = [tuple(skill.values()) for skill in data.data]
         if raw:
@@ -50,11 +50,12 @@ class DatabaseHandler:
         return skills
     
     def get_headers(self) -> list[str]:
-        with sqlite3.connect(self.database) as conn:
-            c = conn.cursor()
-            c.execute("SELECT * FROM skills LIMIT 0")
-            
-            headers = [column[0] for column in c.description]
+        supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
+        
+        data = supabase.table(self.database).select("*").limit(1).execute()
+        
+        headers = [column for column in data.data[0].keys()]
+        
         return headers
             
         
