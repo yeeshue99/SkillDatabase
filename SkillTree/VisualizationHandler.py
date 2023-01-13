@@ -48,6 +48,7 @@ class VisualizationHandler:
             if skill["prerequisite"] != "None":
                 prerequisites = skill["prerequisite"].split(",")
                 for prerequisite in prerequisites:
+                    prerequisite = prerequisite.strip()
                     child = QTreeWidgetItem([prerequisite])
                     item.addChild(child)
             self.skill_tree.addTopLevelItem(item)
